@@ -6,12 +6,12 @@ export const getUser = () => {
     return (dispatch, getState) => {
         dispatch(userStartLoading());
         let user = getState().auth.user;
-        if(user) {
+        if (user) {
             dispatch(userStopLoading());
             // lite
         } else {
             let userFromStorage = localStorage.getItem('sn-user');
-            if(userFromStorage) {
+            if (userFromStorage) {
                 userFromStorage = JSON.parse(userFromStorage);
                 dispatch(storeUser(userFromStorage));
             }
@@ -51,8 +51,26 @@ export const signIn = (phoneNumber, appVerifier, isNewUser) => {
                 dispatch(doesUserExists(phoneNumber))
                     .then(result => {
                         if (!result) {
-                            dispatch(authStopLoading());
-                            resolve("phoneNotExists");
+                            auth.signInWithPhoneNumber(phoneNumber, appVerifier)
+                                .then(function (confirmationResult) {
+                                    dispatch(authStopLoading());
+                                    // SMS sent. Prompt user to type the code from the message, then sign the
+                                    // user in with confirmationResult.confirm(code).
+                                    window.confirmationResult = confirmationResult;
+                                    resolve("phoneNotExistsOtpNeeded");
+                                    console.log(confirmationResult);
+                                }).catch(function (error) {
+                                    dispatch(authStopLoading());
+
+                                    // Error; SMS not sent
+                                    // that.setState({ isError: true });
+                                    if (error.code === 'auth/invalid-phone-number')
+                                        reject('Please enter a valid phone number');
+                                    else
+                                        reject('Some error ocurred. Please try again.');
+
+                                    console.log(error);
+                                });
                         } else {
                             auth.signInWithPhoneNumber(phoneNumber, appVerifier)
                                 .then(function (confirmationResult) {
@@ -122,17 +140,18 @@ export const doesUserExists = (phone) => {
     }
 }
 
-export const setNewUser = (uid, phone, name, email) => {
+export const setNewUser = (uid, phone) => {
     return (dispatch, getState) => {
         let users = getState().auth.users;
         let obj = {
             uid,
             uphone: phone,
-            uname: name,
-            uemail: email
+            // uname: name,
+            // uemail: email
         };
         db.ref('users/' + uid).set(obj);
-
+        if(!users)
+            users = {};
         users[uid] = obj;
         dispatch(storeUsers(users));
         dispatch(setUser(obj.uid));

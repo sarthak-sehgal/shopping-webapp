@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.content {
+    width: 70vw;
+}
+
+.preloader {
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+}
+
+.error {
+    color: red;
+    font-weight: bolder;
+    text-align: center;
+    width: 70vw;
+    display: flex;
+}

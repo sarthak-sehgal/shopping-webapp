@@ -15,13 +15,13 @@ firebase.initializeApp(config);
 var db = firebase.database();
 
 export var auth = firebase.auth();
-// window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
-//     'size': 'invisible',
-//     'callback': function (response) {
-//         // reCAPTCHA solved, allow signInWithPhoneNumber.
-//         // onSignInSubmit();
-//         console.log(response);
-//     }
-// });
+window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+    'size': 'invisible',
+    'callback': function (response) {
+        // reCAPTCHA solved, allow signInWithPhoneNumber.
+        // onSignInSubmit();
+        console.log(response);
+    }
+});
 
 export default db;
