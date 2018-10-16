@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import Aux from '../../hoc/Aux';
-// import NavBar from '../Navigation/NavBar/NavBar';
+import NavBar from '../Navigation/NavBar/NavBar';
 import classes from './Layout.css';
 
 class Layout extends React.Component {
@@ -16,7 +16,7 @@ class Layout extends React.Component {
   render() {
     return (
       <Aux>
-        {/* <NavBar /> */}
+        <NavBar />
         <main className={classes.content}>
           {this.props.children}
         </main>

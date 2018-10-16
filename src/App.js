@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import {BASE_URL} from './serverConfig';
 
 import Layout from './components/Layout/Layout';
+import Auth from './components/Auth/Auth';
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          {/* <Route path={BASE_URL+"/"} exact component={} /> */}
+          <Route path={BASE_URL+"/auth"} exact component={Auth} />
         </Layout>
       </div>
     );
