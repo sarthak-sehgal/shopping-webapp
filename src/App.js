@@ -7,6 +7,7 @@ import {BASE_URL} from './serverConfig';
 
 import Layout from './components/Layout/Layout';
 import Auth from './components/Auth/Auth';
+import AddProduct from './components/AddProduct/AddProduct';
 
 import { getUsers, getUser } from './store/actions/index';
 
@@ -24,7 +25,10 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          <Route path={BASE_URL+"/auth"} exact component={Auth} />
+          <Switch>
+            <Route path={BASE_URL+"/auth"} exact component={Auth} />
+            <Route path={BASE_URL+"/add"} exact component={AddProduct} />
+          </Switch>
         </Layout>
       </div>
     );

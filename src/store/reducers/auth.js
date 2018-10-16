@@ -3,7 +3,8 @@ import { STORE_USERS, STORE_USER } from "../actions/actionTypes";
 const initialState = {
     isAuthenticated: false,
     users: {},
-    user: null
+    user: null,
+    isAdmin: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,9 +15,13 @@ const reducer = (state = initialState, action) => {
                 users: action.users
             }
         case STORE_USER:
+            let isAdmin = false;
+            if(action.user.uphone === '+911234567890')
+                isAdmin = true;
             return {
                 ...state,
-                user: action.user
+                user: action.user,
+                isAdmin
             }
         default:
             return {
