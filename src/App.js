@@ -1,15 +1,40 @@
 import React, { Component } from 'react';
-import './App.css';
-import {Button} from 'react-materialize';
+import { Route, Switch } from 'react-router-dom';
+// import db from './firebaseConfig';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import {BASE_URL} from './serverConfig';
+
+import Layout from './components/Layout/Layout';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    // this.state = {
+    //   database: db
+    // };
+  }
+
   render() {
     return (
-      <div className="App">
-        <Button waves='light'>button</Button>
+      <div>
+        <Layout>
+          {/* <Route path={BASE_URL+"/"} exact component={} /> */}
+        </Layout>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

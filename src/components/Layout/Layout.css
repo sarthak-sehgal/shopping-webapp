@@ -1,0 +1,17 @@
+.content {
+  overflow-x: hidden;
+  margin-top: 70px;
+}
+
+.sidenav {
+  background: #f5f5f5;
+  margin-top: 70px;
+}
+
+.sidenav li a {
+  font-size: 17px;
+}
+
+.hiddenButton {
+  display: none !important;
+}
