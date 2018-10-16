@@ -10,11 +10,14 @@ const middleware = [
 ]
 
 if (process.env.NODE_ENV === 'development') {
+  console.log("Development build");
   const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__
 
   if (typeof devToolsExtension === 'function') {
     enhancers.push(devToolsExtension())
   }
+} else {
+  console.log("Production build");
 }
 
 const composedEnhancers = compose(

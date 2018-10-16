@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import {connect} from 'react-router';
+import {connect} from 'react-redux';
 
 class Auth extends Component {
     render () {
