@@ -1,5 +1,5 @@
 import db from '../../firebaseConfig';
-import { STORE_CATEGORIES, STORE_NEW_CATEGORY, STORE_PRODUCTS } from './actionTypes';
+import { STORE_CATEGORIES, STORE_NEW_CATEGORY, STORE_PRODUCTS, ADD_PRODUCT_IN_STORE } from './actionTypes';
 import { productsStartLoading, productsStopLoading } from './index';
 
 export const addCategory = (name) => {
@@ -59,12 +59,26 @@ export const storeNewCategory = (name) => {
 
 export const addProduct = (name, category, price, description) => {
     return dispatch => {
-        let key = db.ref('/products/' + category + '/').push().key;
-        db.ref('/products/' + category + '/' + key).set({
-            name,
-            category,
-            price,
-            description
+        return new Promise((resolve) => {
+            dispatch(doesProductExists(name, category))
+                .then(result => {
+                    console.log(result);
+                    if (result === "exists") {
+                        resolve("Product exists!");
+                    } else if (result === "notExists") {
+                        let key = db.ref('/products/' + category + '/').push().key;
+                        db.ref('/products/' + category + '/' + key).set({
+                            name,
+                            category,
+                            price,
+                            description
+                        })
+                        dispatch(addProductInStore({name, category, price, description}, key));
+                        resolve("Product added!");
+                    } else {
+                        resolve("Error occurred while adding product!")
+                    }
+                })
         })
     }
 }
@@ -91,5 +105,33 @@ export const storeProducts = (products) => {
     return {
         type: STORE_PRODUCTS,
         products
+    }
+}
+
+export const doesProductExists = (name, category) => {
+    return (dispatch, getState) => {
+        return new Promise((resolve) => {
+            let exists = false;
+            let products = getState().products.products;
+            if (products[category]) {
+                Object.keys(products[category]).map(key => {
+                    // console.log(products[category][key])
+                    if (products[category][key].name === name) {
+                        exists = true;
+                        resolve("exists");
+                    }
+                })
+            }
+            if (!exists)
+                resolve("notExists")
+        })
+    }
+}
+
+export const addProductInStore = (productObj, key) => {
+    return {
+        type: ADD_PRODUCT_IN_STORE,
+        productObj,
+        key
     }
 }

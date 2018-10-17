@@ -59,12 +59,11 @@ class AddProduct extends Component {
             if (file && file !== undefined) {
                 storageRef.put(file).then(function (snapshot) {
                     console.log('Uploaded a blob or file!');
-                    that.props.addProduct(that.state.productName, selectedCategory, that.state.productPrice, that.state.productDescription);
-                    window.Materialize.toast('Added Product!', 3000);
+                    that.props.addProduct(that.state.productName, selectedCategory, that.state.productPrice, that.state.productDescription)
+                        .then(result => { window.Materialize.toast(result, 5000) });
                 });
             } else {
-                this.props.addProduct(this.state.productName, selectedCategory, this.state.productPrice, this.state.productDescription);
-                window.Materialize.toast('Added Product!', 3000);
+                this.props.addProduct(this.state.productName, selectedCategory, this.state.productPrice, this.state.productDescription).then(result => { window.Materialize.toast(result, 5000) });
             }
         } else {
             console.log(this.state.productName.trim(), parseInt(this.state.productPrice.trim()), isCategory, selectedCategory);
