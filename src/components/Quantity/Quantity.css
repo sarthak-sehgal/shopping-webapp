@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.qty {
+    padding: 0 5px;
+    font-size: 20px;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 35px;
+}
+
+.icon {
+    cursor: pointer;
+    user-select: none;
+}
+
+.iconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

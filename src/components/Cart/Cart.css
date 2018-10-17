@@ -41,5 +41,10 @@
 
 .category {
     margin-top: 10px;
-    color: rgba(0,0,0,0.4);
+    color: rgba(0,0,0,0.6);
+}
+
+.quantity {
+    margin-top: 10px;
+    margin-left: -3px;
 }

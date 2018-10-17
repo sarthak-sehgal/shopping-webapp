@@ -31,5 +31,6 @@ export {
     getCart,
     addToCart,
     doesExistInCart,
-    removeItemFromCart
+    removeItemFromCart,
+    setProductQty
 } from './cart';

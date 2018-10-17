@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { CardPanel, Preloader, Icon, Chip } from 'react-materialize';
 import classes from './Cart.css';
 import { removeItemFromCart } from '../../store/actions/index';
+import Quantity from '../Quantity/Quantity';
 
 class Cart extends Component {
     removeItemHandler = (key) => {
@@ -23,8 +24,9 @@ class Cart extends Component {
                 <CardPanel className={`white lighten-4 black-text ${classes.card}`}>
                     <span className={classes.name}>{item.name}</span>
                     <span className={classes.price}>{item.qty} x {item.price} = &#8377; {item.qty * item.price}</span>
+                    <span className={classes.quantity}><Quantity quantity={item.qty} fbKey={item.key} /></span>
+                    <span className={classes.category}>Category: {item.category}</span>
                     <span className={classes.removeBtn} onClick={() => this.removeItemHandler(item.key)}><Icon>close</Icon></span>
-                    <span className={classes.category}>{item.category}</span>
                 </CardPanel>
             )
         })

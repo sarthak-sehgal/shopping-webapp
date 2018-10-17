@@ -24,3 +24,4 @@ export const ADD_PRODUCT_IN_STORE = "ADD_PRODUCT_IN_STORE";
 export const STORE_CART = "STORE_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_ITEM_FROM_CART = "REMOVE_ITEM_FROM_CART";
+export const SET_PRODUCT_QTY = "SET_PRODUCT_QTY";

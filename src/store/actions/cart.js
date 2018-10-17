@@ -1,4 +1,4 @@
-import { STORE_CART, ADD_TO_CART, REMOVE_ITEM_FROM_CART } from "./actionTypes";
+import { STORE_CART, ADD_TO_CART, REMOVE_ITEM_FROM_CART, SET_PRODUCT_QTY } from "./actionTypes";
 import {cartStartLoading, cartStopLoading} from './index';
 
 export const getCart = () => {
@@ -53,5 +53,14 @@ export const removeItemFromCart = (key) => {
     return {
         type: REMOVE_ITEM_FROM_CART,
         key
+    }
+}
+
+export const setProductQty = (key, qty) => {
+    console.log("set product qty called", key, qty)
+    return {
+        type: SET_PRODUCT_QTY,
+        key,
+        qty
     }
 }
