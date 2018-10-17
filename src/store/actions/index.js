@@ -6,7 +6,9 @@ export {
     uiStartLoading,
     uiStopLoading,
     productsStartLoading,
-    productsStopLoading
+    productsStopLoading,
+    cartStartLoading,
+    cartStopLoading
 } from './ui';
 
 export {
@@ -28,5 +30,6 @@ export {
 export {
     getCart,
     addToCart,
-    doesExistInCart
+    doesExistInCart,
+    removeItemFromCart
 } from './cart';

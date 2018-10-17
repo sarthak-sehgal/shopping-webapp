@@ -29,7 +29,7 @@ class Product extends Component {
             } else if(result==='notExists') {
                 let item = {...this.props.info};
                 item.key = this.props.fbKey;
-                console.log(item);
+                item.qty = 1;
                 this.props.addToCart(item);
                 window.Materialize.toast('Added to cart!', 3000);
             } else {

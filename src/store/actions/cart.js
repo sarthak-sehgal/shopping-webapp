@@ -1,12 +1,16 @@
-import { STORE_CART, ADD_TO_CART } from "./actionTypes";
+import { STORE_CART, ADD_TO_CART, REMOVE_ITEM_FROM_CART } from "./actionTypes";
+import {cartStartLoading, cartStopLoading} from './index';
 
 export const getCart = () => {
     return dispatch => {
+        dispatch(cartStartLoading());
         let cart = localStorage.getItem('sn-cart');
         if(cart) {
+            dispatch(cartStopLoading());
             console.log("Cart found in storage");
             dispatch(storeCart(JSON.parse(cart)))
         } else {
+            dispatch(cartStopLoading());
             console.log("Cart not found in storage");
             dispatch(storeCart([]))
         }
@@ -42,5 +46,12 @@ export const doesExistInCart = (key) => {
             else
                 resolve("notExists");
         })
+    }
+}
+
+export const removeItemFromCart = (key) => {
+    return {
+        type: REMOVE_ITEM_FROM_CART,
+        key
     }
 }

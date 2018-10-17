@@ -16,7 +16,8 @@ class NavBar extends Component {
         }
         return (
             <Navbar brand='Balaji Stores' right>
-                <NavItem href="./cart"><Icon>shopping_cart</Icon></NavItem>
+                <NavItem href="./">Home</NavItem>
+                <NavItem href="./cart">Cart</NavItem>
                 {authStatus}
             </Navbar>
         )
