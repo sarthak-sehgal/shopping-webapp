@@ -23,16 +23,6 @@ class AddProduct extends Component {
     }
     componentDidMount() {
         setTimeout(() => { this.setState({ loading: false, isAdmin: this.props.isAdmin }) }, 1000);
-        // let imageRef = storage.ref('test.jpg');
-        // imageRef.getDownloadURL().then(function (url) {
-        //     // `url` is the download URL for 'images/stars.jpg'
-
-        //     // Or inserted into an <img> element:
-        //     var img = document.getElementById('myimg');
-        //     img.src = url;
-        // }).catch(function (error) {
-        //     // Handle any errors
-        // });
     }
 
     handleFile = (file) => {
