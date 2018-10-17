@@ -10,3 +10,7 @@
 .input {
     width: 70vw;
 }
+
+.errorMsg {
+    margin-top: 10px;
+}

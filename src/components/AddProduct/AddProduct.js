@@ -5,29 +5,34 @@ import { Redirect } from 'react-router-dom';
 import { BASE_URL } from '../../serverConfig';
 import { Preloader, Input, Button } from 'react-materialize';
 import { storage } from '../../firebaseConfig';
-import { addCategory } from '../../store/actions/index';
+import { addCategory, addProduct } from '../../store/actions/index';
 
 class AddProduct extends Component {
     state = {
         loading: true,
         isAdmin: false,
         file: undefined,
-        selectedCategory: null,
+        selectedCategory: 'select',
         newCatName: '',
-        newCatStatus: null
+        newCatStatus: null,
+        productName: '',
+        productPrice: '0',
+        productDescription: '',
+        isError: false,
+        errorMsg: ''
     }
     componentDidMount() {
         setTimeout(() => { this.setState({ loading: false, isAdmin: this.props.isAdmin }) }, 1000);
-        let imageRef = storage.ref('test.jpg');
-        imageRef.getDownloadURL().then(function (url) {
-            // `url` is the download URL for 'images/stars.jpg'
+        // let imageRef = storage.ref('test.jpg');
+        // imageRef.getDownloadURL().then(function (url) {
+        //     // `url` is the download URL for 'images/stars.jpg'
 
-            // Or inserted into an <img> element:
-            var img = document.getElementById('myimg');
-            img.src = url;
-        }).catch(function (error) {
-            // Handle any errors
-        });
+        //     // Or inserted into an <img> element:
+        //     var img = document.getElementById('myimg');
+        //     img.src = url;
+        // }).catch(function (error) {
+        //     // Handle any errors
+        // });
     }
 
     handleFile = (file) => {
@@ -35,19 +40,40 @@ class AddProduct extends Component {
     }
 
     handleAddProduct = () => {
-        let file = this.state.file;
-        let storageRef = storage.ref('test.jpg');
-        if (file && file !== undefined) {
-            storageRef.put(file).then(function (snapshot) {
-                console.log('Uploaded a blob or file!');
-            });
+        this.setState({ isError: false, errorMsg: '' });
+        let isCategory = false;
+        let selectedCategory = '';
+        if (this.state.selectedCategory !== 'select' && this.state.selectedCategory !== 'addCategory') {
+            isCategory = true;
+            selectedCategory = this.state.selectedCategory;
+        }
+        if (this.state.selectedCategory === 'addCategory' && this.state.newCatName.trim() !== '' && this.state.newCatStatus === 'added') {
+            isCategory = true;
+            selectedCategory = this.state.newCatName;
+        }
+
+        if (this.state.productName.trim() && parseInt(this.state.productPrice.trim()) && isCategory) {
+            let file = this.state.file;
+            let storageRef = storage.ref(selectedCategory + '/' + this.state.productName.trim());
+            let that = this;
+            if (file && file !== undefined) {
+                storageRef.put(file).then(function (snapshot) {
+                    console.log('Uploaded a blob or file!');
+                    that.props.addProduct(that.state.productName, selectedCategory, that.state.productPrice, that.state.productDescription);
+                    window.Materialize.toast('Added Product!', 3000);
+                });
+            } else {
+                this.props.addProduct(this.state.productName, selectedCategory, this.state.productPrice, this.state.productDescription);
+                window.Materialize.toast('Added Product!', 3000);
+            }
         } else {
-            console.log('Please select file');
+            console.log(this.state.productName.trim(), parseInt(this.state.productPrice.trim()), isCategory, selectedCategory);
+            this.setState({ isError: true, errorMsg: 'Error in one of the fields.' });
         }
     }
 
     categoryChangeHandler = (e) => {
-        if(e.target.value !== 'select')
+        if (e.target.value !== 'select')
             this.setState({ selectedCategory: e.target.value, newCatStatus: null, newCatName: '' });
         console.log(e.target.value);
     }
@@ -55,8 +81,8 @@ class AddProduct extends Component {
     newCategoryHandler = () => {
         if (this.state.newCatName.trim()) {
             this.props.addCategory(this.state.newCatName)
-                .then(result => this.setState({newCatStatus: result}))
-                .catch(err => this.setState({newCatStatus: err}))
+                .then(result => this.setState({ newCatStatus: result }))
+                .catch(err => this.setState({ newCatStatus: err }))
         }
     }
 
@@ -87,7 +113,7 @@ class AddProduct extends Component {
         }
 
         let categories = null;
-        if(this.props.categories) {
+        if (this.props.categories) {
             categories = this.props.categories.map((category, index) => {
                 return <option value={category} key={index}>{category}</option>
             })
@@ -96,8 +122,8 @@ class AddProduct extends Component {
         return (
             <div className={classes.container}>
                 <h3>Add a product</h3>
-                <img id="myimg"></img>
-                <Input placeholder="" label="Name" />
+                {/* <img id="myimg"></img> */}
+                <Input placeholder="" label="Name" onChange={(e) => this.setState({ productName: e.target.value })} />
                 <span>{this.state.newCatStatus}</span>
                 <Input type='select' label="Category" onChange={this.categoryChangeHandler}>
                     <option value='select' selected={true}>Select</option>
@@ -105,10 +131,11 @@ class AddProduct extends Component {
                     <option value='addCategory'>New category</option>
                 </Input>
                 {addCategory}
-                <Input placeholder="" label="Price" />
-                <Input placeholder="" label="Description" />
+                <Input placeholder="" label="Price" onChange={(e) => this.setState({ productPrice: e.target.value })} />
+                <Input placeholder="" label="Description" onChange={(e) => this.setState({ productDescription: e.target.value })} />
                 <Input accept="image/*" type="file" label="Image" id="file-handler" onChange={this.handleFile} />
                 <Button waves='light' onClick={this.handleAddProduct}>Add Product</Button>
+                {this.state.isError ? <span className={classes.errorMsg}>{this.state.errorMsg}</span> : null}
             </div>
         )
     }
@@ -124,7 +151,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addCategory: (name) => dispatch(addCategory(name))
+        addCategory: (name) => dispatch(addCategory(name)),
+        addProduct: (name, category, price, description) => dispatch(addProduct(name, category, price, description))
     }
 }
 

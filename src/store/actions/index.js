@@ -16,5 +16,6 @@ export {
 
 export {
     addCategory,
-    getCategories
+    getCategories,
+    addProduct
 } from './products';

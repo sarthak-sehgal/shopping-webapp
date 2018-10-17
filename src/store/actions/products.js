@@ -55,3 +55,15 @@ export const storeNewCategory = (name) => {
         name
     }
 }
+
+export const addProduct = (name, category, price, description) => {
+    return dispatch => {
+        let key = db.ref('/products/' + category + '/').push().key;
+        db.ref('/products/' + category + '/' + key).set({
+            name,
+            category,
+            price,
+            description
+        })
+    }
+}
