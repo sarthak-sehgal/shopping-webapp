@@ -3,19 +3,43 @@ import { connect } from 'react-redux';
 import classes from './AddProduct.css';
 import { Redirect } from 'react-router-dom';
 import { BASE_URL } from '../../serverConfig';
-import { Preloader, Input } from 'react-materialize';
+import { Preloader, Input, Button } from 'react-materialize';
+import { storage } from '../../firebaseConfig';
 
 class AddProduct extends Component {
     state = {
         loading: true,
-        isAdmin: false
+        isAdmin: false,
+        file: undefined
     }
     componentDidMount() {
-        setTimeout(() => { this.setState({ loading: false, isAdmin: this.props.isAdmin }) }, 500)
+        setTimeout(() => { this.setState({ loading: false, isAdmin: this.props.isAdmin }) }, 500);
+        let imageRef = storage.ref('test.jpg');
+        imageRef.getDownloadURL().then(function (url) {
+            // `url` is the download URL for 'images/stars.jpg'
+
+            // Or inserted into an <img> element:
+            var img = document.getElementById('myimg');
+            img.src = url;
+        }).catch(function (error) {
+            // Handle any errors
+        });
     }
 
     handleFile = (file) => {
-        console.log(document.getElementById("file-handler").files[0]);
+        this.setState({ file: document.getElementById("file-handler").files[0] });
+    }
+
+    handleAddProduct = () => {
+        let file = this.state.file;
+        let storageRef = storage.ref('test.jpg');
+        if (file && file !== undefined) {
+            storageRef.put(file).then(function (snapshot) {
+                console.log('Uploaded a blob or file!');
+            });
+        } else {
+            console.log('Please select file');
+        }
     }
 
     render() {
@@ -36,6 +60,7 @@ class AddProduct extends Component {
         return (
             <div className={classes.container}>
                 <h3>Add a product</h3>
+                <img id="myimg"></img>
                 <Input placeholder="" label="Name" />
                 <Input type='select' label="Category">
                     <option value='1'>Option 1</option>
@@ -44,7 +69,8 @@ class AddProduct extends Component {
                 </Input>
                 <Input placeholder="" label="Price" />
                 <Input placeholder="" label="Description" />
-                <Input accept="image/*" type="file" label="Image" id="file-handler" onChange={this.handleFile}/>
+                <Input accept="image/*" type="file" label="Image" id="file-handler" onChange={this.handleFile} />
+                <Button waves='light' onClick={this.handleAddProduct}>Add Product</Button>
             </div>
         )
     }

@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
+import 'firebase/storage';
 
 var config = {
     apiKey: "AIzaSyDJ8qp2D8mupTsTS6zmpGXUeN9BDxMtYdQ",
@@ -25,3 +26,4 @@ window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button',
 });
 
 export default db;
+export const storage = firebase.storage();
