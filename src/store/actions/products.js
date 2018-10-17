@@ -117,6 +117,8 @@ export const doesProductExists = (name, category) => {
         return new Promise((resolve) => {
             let exists = false;
             let products = getState().products.products;
+            if(!products)
+                products = {};
             if (products[category]) {
                 Object.keys(products[category]).map(key => {
                     // console.log(products[category][key])

@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Product from '../Product/Product';
+import classes from './Products.css';
 
 class Products extends Component {
     render() {
+        let products = <span>No products found</span>;
+        if(this.props.products && this.props.products[this.props.category]) {
+            products = Object.keys(this.props.products[this.props.category]).map(key => {
+                return <Product info={this.props.products[this.props.category][key]} key={key} />
+            })
+        }
         return (
-            <div>
-                {
-                    Object.keys(this.props.products[this.props.category]).map(key => {
-                        return <Product info={this.props.products[this.props.category][key]} />
-                    })
-                }
+            <div className={classes.container}>
+                {products}
             </div>
         )
     }

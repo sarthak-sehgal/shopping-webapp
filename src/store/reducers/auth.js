@@ -16,8 +16,10 @@ const reducer = (state = initialState, action) => {
             }
         case STORE_USER:
             let isAdmin = false;
-            if(action.user.uphone === '+911234567890')
-                isAdmin = true;
+            if(action.user) {
+                if(action.user.uphone === '+911234567890')
+                    isAdmin = true;
+            }
             return {
                 ...state,
                 user: action.user,

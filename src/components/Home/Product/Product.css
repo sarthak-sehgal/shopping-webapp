@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    margin: 10px;
+    box-shadow: 0 0 3px 3px #efefef60;
+    padding: 0 0 10px 0;
+}
+
+.image {
+    width: 100%;
+    min-height: 150px;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.price {
+    font-size: 15px;
+}
+
+.description {
+    font-size: 15px;
+    color: rgba(0,0,0,0.6)
+}
+
+.addToCart {
+    margin-top: 10px;
+    background: #4BB543;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 3px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.add {
+    padding-left: 5px;
+    font-weight: bold;
+}
