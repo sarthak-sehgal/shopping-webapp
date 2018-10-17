@@ -4,6 +4,7 @@ import { CardPanel, Preloader, Icon, Chip } from 'react-materialize';
 import classes from './Cart.css';
 import { removeItemFromCart } from '../../store/actions/index';
 import Quantity from '../Quantity/Quantity';
+import Summary from './Summary/Summary';
 
 class Cart extends Component {
     removeItemHandler = (key) => {
@@ -38,6 +39,7 @@ class Cart extends Component {
 
         return (
             <div className={classes.container}>
+                <Summary />
                 {cartHeading}
                 {cart}
             </div>

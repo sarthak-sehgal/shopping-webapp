@@ -1,0 +1,31 @@
+.container {
+    min-height: 60px;
+    width: 100vw;
+    box-shadow: 0 2px 3px 3px #efefef;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.total {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+@media all and (max-width: 380px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+    .total {
+        margin-bottom: 5px;
+    }
+}
