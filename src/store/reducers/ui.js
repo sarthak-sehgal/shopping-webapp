@@ -3,7 +3,8 @@ import {AUTH_START_LOADING, AUTH_STOP_LOADING, USER_START_LOADING, USER_STOP_LOA
 const initialState = {
     authLoading: false,
     userLoading: false,
-    uiLoading: false
+    uiLoading: false,
+    productsLoading: false
 }
 
 const reducer = (state = initialState, action) => {
