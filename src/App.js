@@ -9,7 +9,7 @@ import Layout from './components/Layout/Layout';
 import Auth from './components/Auth/Auth';
 import AddProduct from './components/AddProduct/AddProduct';
 
-import { getUsers, getUser } from './store/actions/index';
+import { getUsers, getUser, getCategories } from './store/actions/index';
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class App extends Component {
   componentDidMount() {
     this.props.getUser();
     this.props.getUsers();
+    this.props.getCategories();
   }
 
   render() {
@@ -44,7 +45,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUsers: () => dispatch(getUsers()),
-    getUser: () => dispatch(getUser())
+    getUser: () => dispatch(getUser()),
+    getCategories: () => dispatch(getCategories())
   }
 }
 

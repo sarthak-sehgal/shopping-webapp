@@ -5,15 +5,19 @@ import { Redirect } from 'react-router-dom';
 import { BASE_URL } from '../../serverConfig';
 import { Preloader, Input, Button } from 'react-materialize';
 import { storage } from '../../firebaseConfig';
+import { addCategory } from '../../store/actions/index';
 
 class AddProduct extends Component {
     state = {
         loading: true,
         isAdmin: false,
-        file: undefined
+        file: undefined,
+        selectedCategory: null,
+        newCatName: '',
+        newCatStatus: null
     }
     componentDidMount() {
-        setTimeout(() => { this.setState({ loading: false, isAdmin: this.props.isAdmin }) }, 500);
+        setTimeout(() => { this.setState({ loading: false, isAdmin: this.props.isAdmin }) }, 1000);
         let imageRef = storage.ref('test.jpg');
         imageRef.getDownloadURL().then(function (url) {
             // `url` is the download URL for 'images/stars.jpg'
@@ -42,6 +46,20 @@ class AddProduct extends Component {
         }
     }
 
+    categoryChangeHandler = (e) => {
+        if(e.target.value !== 'select')
+            this.setState({ selectedCategory: e.target.value, newCatStatus: null, newCatName: '' });
+        console.log(e.target.value);
+    }
+
+    newCategoryHandler = () => {
+        if (this.state.newCatName.trim()) {
+            this.props.addCategory(this.state.newCatName)
+                .then(result => this.setState({newCatStatus: result}))
+                .catch(err => this.setState({newCatStatus: err}))
+        }
+    }
+
     render() {
         if (this.state.loading) {
             return (
@@ -57,16 +75,36 @@ class AddProduct extends Component {
                 }}
             />
         }
+
+        let addCategory = null;
+        if (this.state.selectedCategory === 'addCategory') {
+            addCategory = (
+                <div>
+                    <Input placeholder="" label="Category Name" value={this.state.newCatName} onChange={(e) => this.setState({ newCatName: e.target.value })} />
+                    <Button waves="light" onClick={this.newCategoryHandler}>Add</Button>
+                </div>
+            )
+        }
+
+        let categories = null;
+        if(this.props.categories) {
+            categories = this.props.categories.map((category, index) => {
+                return <option value={category} key={index}>{category}</option>
+            })
+        }
+
         return (
             <div className={classes.container}>
                 <h3>Add a product</h3>
                 <img id="myimg"></img>
                 <Input placeholder="" label="Name" />
-                <Input type='select' label="Category">
-                    <option value='1'>Option 1</option>
-                    <option value='2'>Option 2</option>
-                    <option value='3'>Option 3</option>
+                <span>{this.state.newCatStatus}</span>
+                <Input type='select' label="Category" onChange={this.categoryChangeHandler}>
+                    <option value='select' selected={true}>Select</option>
+                    {categories}
+                    <option value='addCategory'>New category</option>
                 </Input>
+                {addCategory}
                 <Input placeholder="" label="Price" />
                 <Input placeholder="" label="Description" />
                 <Input accept="image/*" type="file" label="Image" id="file-handler" onChange={this.handleFile} />
@@ -79,13 +117,14 @@ class AddProduct extends Component {
 const mapStateToProps = state => {
     return {
         isAdmin: state.auth.isAdmin,
-        userLoading: state.ui.userLoading
+        userLoading: state.ui.userLoading,
+        categories: state.products.categories
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        addCategory: (name) => dispatch(addCategory(name))
     }
 }
 

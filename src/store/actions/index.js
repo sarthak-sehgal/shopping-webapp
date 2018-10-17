@@ -13,3 +13,8 @@ export {
     getUser,
     signOut
 } from './auth';
+
+export {
+    addCategory,
+    getCategories
+} from './products';
