@@ -1,7 +1,8 @@
-import { STORE_CATEGORIES, STORE_NEW_CATEGORY } from "../actions/actionTypes";
+import { STORE_CATEGORIES, STORE_NEW_CATEGORY, STORE_PRODUCTS } from "../actions/actionTypes";
 
 const initialState = {
-    categories: []
+    categories: [],
+    products: {}
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +20,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 categories
+            }
+        case STORE_PRODUCTS:
+            return {
+                ...state,
+                products: action.products
             }
         default:
             return {

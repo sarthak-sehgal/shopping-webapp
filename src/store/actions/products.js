@@ -1,5 +1,6 @@
 import db from '../../firebaseConfig';
-import { STORE_CATEGORIES, STORE_NEW_CATEGORY } from './actionTypes';
+import { STORE_CATEGORIES, STORE_NEW_CATEGORY, STORE_PRODUCTS } from './actionTypes';
+import { productsStartLoading, productsStopLoading } from './index';
 
 export const addCategory = (name) => {
     return (dispatch, getState) => {
@@ -65,5 +66,30 @@ export const addProduct = (name, category, price, description) => {
             price,
             description
         })
+    }
+}
+
+export const getProducts = () => {
+    return dispatch => {
+        dispatch(productsStartLoading());
+        db.ref('/products/').once('value')
+            .then((snap) => {
+                var snapData = snap.val();
+                console.log(snapData);
+                dispatch(productsStopLoading());
+                dispatch(storeProducts(snapData));
+            })
+            .catch(err => {
+                dispatch(productsStopLoading())
+                dispatch(storeProducts("error"));
+                console.log(err);
+            });
+    }
+}
+
+export const storeProducts = (products) => {
+    return {
+        type: STORE_PRODUCTS,
+        products
     }
 }

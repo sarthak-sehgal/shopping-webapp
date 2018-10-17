@@ -2,7 +2,11 @@ export {
     authStartLoading,
     authStopLoading,
     userStartLoading,
-    userStopLoading
+    userStopLoading,
+    uiStartLoading,
+    uiStopLoading,
+    productsStartLoading,
+    productsStopLoading
 } from './ui';
 
 export {
@@ -17,5 +21,6 @@ export {
 export {
     addCategory,
     getCategories,
-    addProduct
+    addProduct,
+    getProducts
 } from './products';

@@ -1,4 +1,4 @@
-import { AUTH_STOP_LOADING, AUTH_START_LOADING, USER_START_LOADING, USER_STOP_LOADING } from './actionTypes';
+import { AUTH_STOP_LOADING, AUTH_START_LOADING, USER_START_LOADING, USER_STOP_LOADING, UI_START_LOADING, UI_STOP_LOADING, PRODUCTS_START_LOADING, PRODUCTS_STOP_LOADING } from './actionTypes';
 
 export const authStartLoading = () => {
     return {
@@ -21,5 +21,29 @@ export const userStartLoading = () => {
 export const userStopLoading = () => {
     return {
         type: USER_STOP_LOADING
+    }
+}
+
+export const uiStartLoading = () => {
+    return {
+        type: UI_START_LOADING
+    }
+}
+
+export const uiStopLoading = () => {
+    return {
+        type: UI_STOP_LOADING
+    }
+}
+
+export const productsStartLoading = () => {
+    return {
+        type: PRODUCTS_START_LOADING
+    }
+}
+
+export const productsStopLoading = () => {
+    return {
+        type: PRODUCTS_STOP_LOADING
     }
 }
