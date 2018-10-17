@@ -49,11 +49,11 @@ class AddProduct extends Component {
             if (file && file !== undefined) {
                 storageRef.put(file).then(function (snapshot) {
                     console.log('Uploaded a blob or file!');
-                    that.props.addProduct(that.state.productName, selectedCategory, that.state.productPrice, that.state.productDescription)
+                    that.props.addProduct(that.state.productName, selectedCategory, that.state.productPrice, that.state.productDescription, true)
                         .then(result => { window.Materialize.toast(result, 5000) });
                 });
             } else {
-                this.props.addProduct(this.state.productName, selectedCategory, this.state.productPrice, this.state.productDescription).then(result => { window.Materialize.toast(result, 5000) });
+                this.props.addProduct(this.state.productName, selectedCategory, this.state.productPrice, this.state.productDescription, false).then(result => { window.Materialize.toast(result, 5000) });
             }
         } else {
             console.log(this.state.productName.trim(), parseInt(this.state.productPrice.trim()), isCategory, selectedCategory);
@@ -141,7 +141,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         addCategory: (name) => dispatch(addCategory(name)),
-        addProduct: (name, category, price, description) => dispatch(addProduct(name, category, price, description))
+        addProduct: (name, category, price, description, isImg) => dispatch(addProduct(name, category, price, description, isImg))
     }
 }
 

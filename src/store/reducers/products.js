@@ -28,7 +28,12 @@ const reducer = (state = initialState, action) => {
             }
         case ADD_PRODUCT_IN_STORE:
             let products = Object.assign({}, state.products);
-            products[action.productObj.category][action.key] = action.productObj;
+            if(products[action.productObj.category])
+                products[action.productObj.category][action.key] = action.productObj;
+            else {
+                products[action.productObj.category] = {};
+                products[action.productObj.category][action.key] = action.productObj;
+            }
             return {
                 ...state,
                 products

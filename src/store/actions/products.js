@@ -60,7 +60,7 @@ export const storeNewCategory = (name) => {
     }
 }
 
-export const addProduct = (name, category, price, description) => {
+export const addProduct = (name, category, price, description, isImg) => {
     return dispatch => {
         return new Promise((resolve) => {
             dispatch(doesProductExists(name, category))
@@ -74,9 +74,10 @@ export const addProduct = (name, category, price, description) => {
                             name,
                             category,
                             price,
-                            description
+                            description,
+                            isImg
                         })
-                        dispatch(addProductInStore({name, category, price, description}, key));
+                        dispatch(addProductInStore({name, category, price, description, isImg}, key));
                         resolve("Product added!");
                     } else {
                         resolve("Error occurred while adding product!")
