@@ -24,3 +24,9 @@ export {
     addProduct,
     getProducts
 } from './products';
+
+export {
+    getCart,
+    addToCart,
+    doesExistInCart
+} from './cart';

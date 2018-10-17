@@ -17,3 +17,7 @@ export const STORE_CATEGORIES = "STORE_CATEGORIES";
 export const STORE_NEW_CATEGORY = "STORE_NEW_CATEGORY";
 export const STORE_PRODUCTS = "STORE_PRODUCTS";
 export const ADD_PRODUCT_IN_STORE = "ADD_PRODUCT_IN_STORE";
+
+// cart
+export const STORE_CART = "STORE_CART";
+export const ADD_TO_CART = "ADD_TO_CART";

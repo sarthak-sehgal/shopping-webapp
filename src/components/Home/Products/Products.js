@@ -8,7 +8,7 @@ class Products extends Component {
         let products = <span>No products found</span>;
         if(this.props.products && this.props.products[this.props.category]) {
             products = Object.keys(this.props.products[this.props.category]).map(key => {
-                return <Product info={this.props.products[this.props.category][key]} key={key} />
+                return <Product info={this.props.products[this.props.category][key]} fbKey={key} />
             })
         }
         return (

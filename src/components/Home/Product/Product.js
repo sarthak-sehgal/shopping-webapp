@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { storage } from '../../../firebaseConfig';
 import classes from './Product.css';
 import { Icon } from 'react-materialize';
+import { addToCart, doesExistInCart } from '../../../store/actions/index';
 
 class Product extends Component {
     componentDidMount() {
@@ -19,6 +20,24 @@ class Product extends Component {
             });
         }
     }
+
+    addProductHandler = () => {
+        this.props.doesExistInCart(this.props.fbKey)
+        .then(result => {
+            if(result === 'exists') {
+                window.Materialize.toast('Product exists in cart!', 3000);
+            } else if(result==='notExists') {
+                let item = {...this.props.info};
+                item.key = this.props.fbKey;
+                console.log(item);
+                this.props.addToCart(item);
+                window.Materialize.toast('Added to cart!', 3000);
+            } else {
+                window.Materialize.toast('Error occurred!', 3000);
+            }
+        })    
+    }
+
     render() {
         return (
             <div className={classes.container}>
@@ -27,7 +46,7 @@ class Product extends Component {
                     <span className={classes.name}>{this.props.info.name}</span>
                     <span className={classes.price}>&#8377; {this.props.info.price}</span>
                     <span className={classes.description}>{this.props.info.description}</span>
-                    <div className={classes.addToCart}>
+                    <div className={classes.addToCart} onClick={this.addProductHandler}>
                         <Icon>add_shopping_cart</Icon>
                         <span className={classes.add}>ADD</span>
                     </div>
@@ -45,7 +64,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        addToCart: (item) => dispatch(addToCart(item)),
+        doesExistInCart: (key) => dispatch(doesExistInCart(key))
     }
 }
 
