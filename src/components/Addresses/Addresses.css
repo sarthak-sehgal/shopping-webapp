@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    position: relative;
+}
+
+.addBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.addCard {
+    margin: 10px 0;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.pinCode {
+    font-size: 15px;
+    color: #00000060;
+}
+
+.removeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}

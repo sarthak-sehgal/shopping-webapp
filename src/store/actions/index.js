@@ -34,3 +34,9 @@ export {
     removeItemFromCart,
     setProductQty
 } from './cart';
+
+export {
+    getAddresses,
+    addAddress,
+    deleteAddress
+} from './addresses';
