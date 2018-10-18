@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, NavItem, Icon } from 'react-materialize';
 import {connect} from 'react-redux';
 import {signOut} from '../../../store/actions/index';
+import {BASE_URL} from '../../../serverConfig';
 
 class NavBar extends Component {
     signOutHandler = () => {
@@ -10,20 +11,20 @@ class NavBar extends Component {
     }
     
     render() {
-        let authStatus = <NavItem href="./auth">Login &amp; Sign Up</NavItem>;
+        let authStatus = <NavItem href={BASE_URL + '/auth'}>Login &amp; Sign Up</NavItem>;
         if(this.props.user) {
             authStatus = (
                 <React.Fragment>
-                    <NavItem href="./addresses">Addresses</NavItem>
-                    <NavItem href="./orders">My Orders</NavItem>
+                    <NavItem href={BASE_URL + '/addresses'}>Addresses</NavItem>
+                    <NavItem href={BASE_URL + '/orders'}>My Orders</NavItem>
                     <NavItem onClick={this.signOutHandler}>Sign Out</NavItem>
                 </React.Fragment>
             )
         }
         return (
-            <Navbar brand='Balaji Stores' right>
-                <NavItem href="./">Home</NavItem>
-                <NavItem href="./cart">Cart</NavItem>
+            <Navbar brand='Balaji Stores' href={BASE_URL + '/'} right>
+                <NavItem href={BASE_URL + '/'}>Home</NavItem>
+                <NavItem href={BASE_URL + '/cart'}>Cart</NavItem>
                 {authStatus}
             </Navbar>
         )
