@@ -12,6 +12,7 @@ import Home from './components/Home/Home';
 import Cart from './components/Cart/Cart';
 import Addresses from './components/Addresses/Addresses';
 import Order from './components/Order/Order';
+import Orders from './components/Orders/Orders';
 
 import { getUsers, getUser, getCategories, getProducts, getCart } from './store/actions/index';
 
@@ -39,6 +40,7 @@ class App extends Component {
             <Route path={BASE_URL+"/cart"} exact component={Cart} />
             <Route path={BASE_URL+"/addresses"} exact component={Addresses} />
             <Route path={BASE_URL+"/order"} exact component={Order} />
+            <Route path={BASE_URL+"/orders"} exact component={Orders} />
           </Switch>
         </Layout>
       </div>

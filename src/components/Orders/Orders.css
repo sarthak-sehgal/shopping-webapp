@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 80vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.orderTitle {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.orderTime {
+    font-size: 15px;
+    color: rgba(0,0,0,0.5);
+    margin-bottom: 2px;
+}
+
+.orderAdd {
+    font-size: 15px;
+    color: rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+}
+
+.itemsHeading {
+    font-size: 20px;
+}
+
+.itemsCollectionItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemSpan {
+    font-size: 13px;
+}

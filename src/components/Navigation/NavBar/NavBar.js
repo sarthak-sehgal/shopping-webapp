@@ -15,6 +15,7 @@ class NavBar extends Component {
             authStatus = (
                 <React.Fragment>
                     <NavItem href="./addresses">Addresses</NavItem>
+                    <NavItem href="./orders">My Orders</NavItem>
                     <NavItem onClick={this.signOutHandler}>Sign Out</NavItem>
                 </React.Fragment>
             )

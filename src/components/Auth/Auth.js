@@ -93,7 +93,7 @@ class Auth extends Component {
             continueBtn = (
                 <div>
                     <Input label="OTP" value={this.state.otp} onChange={(e) => this.setState({ otp: e.target.value })} disabled={true} />
-                    <div className={classes.preloader}><Preloader size='small' /></div>;
+                    <div className={classes.preloader}><Preloader size='small' /></div>
                 </div>
             )
         }
