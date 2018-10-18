@@ -12,7 +12,12 @@ class NavBar extends Component {
     render() {
         let authStatus = <NavItem href="./auth">Login &amp; Sign Up</NavItem>;
         if(this.props.user) {
-            authStatus = <NavItem onClick={this.signOutHandler}>Sign Out</NavItem>
+            authStatus = (
+                <React.Fragment>
+                    <NavItem href="./addresses">Addresses</NavItem>
+                    <NavItem onClick={this.signOutHandler}>Sign Out</NavItem>
+                </React.Fragment>
+            )
         }
         return (
             <Navbar brand='Balaji Stores' right>

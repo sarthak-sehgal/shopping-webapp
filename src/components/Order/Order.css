@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    position: relative;
+}
+
+.topMsg {
+    padding: 10px 0;
+    font-weight: bold;
+    width: 100vw;
+    text-align: center;
+    background: #efefef;
+}
+
+.content {
+    width: 80vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 25px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.total {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.expensiveMsg {
+    font-size: 15px;
+    color: rgba(0,0,0,0.5);
+    margin-bottom: 10px
+}
+
+.selectTime {
+    font-size: 18px;
+}
+
+.timeBtns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.selectedTime {
+    background: #4BB543 !important;
+    color: #fff !important;
+}
+
+.time {
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px 7px;
+    font-size: 15px;
+    border-radius: 3px;
+    background: #efefef;
+    font-weight: bold;
+}
+
+.orderBtn {
+    margin-top: 20px;
+}

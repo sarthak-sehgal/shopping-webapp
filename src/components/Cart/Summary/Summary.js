@@ -6,10 +6,14 @@ import classes from './Summary.css';
 
 class Summary extends Component {
     render() {
+        let orderBtn = <Button>Place Order</Button>
+        if(!this.props.total) {
+            orderBtn = <Button disabled={true}>Cart empty</Button>
+        }
         return (
             <div className={classes.container}>
                 <span className={classes.total}>Total price: &#8377; {this.props.total}</span>
-                <Button>Place Order</Button>
+                {orderBtn}
             </div>
         )
     }

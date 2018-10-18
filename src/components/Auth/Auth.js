@@ -79,7 +79,7 @@ class Auth extends Component {
 
         let continueBtn = <Button waves='light' className={classes.content} onClick={this.handleSignin}>Continue</Button>;
         if (this.props.authLoading) {
-            continueBtn = <div className={classes.preloader}><Preloader size='small' /></div>;
+            continueBtn = <div className={classes.preloader}><Preloader size='small' /></div>
         }
         if (this.state.isOtpNeeded) {
             continueBtn = (
