@@ -6,6 +6,7 @@ import Auth from '../Auth/Auth';
 import Addresses from '../Addresses/Addresses';
 import { placeOrder } from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
+import {BASE_URL} from '../../serverConfig';
 
 class Order extends Component {
     state = {
@@ -64,7 +65,7 @@ class Order extends Component {
         if (this.state.shopMore) {
             return (
                 <Redirect
-                    to='/'
+                    to={BASE_URL + '/'}
                 />
             )
         }
