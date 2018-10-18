@@ -32,7 +32,8 @@ export {
     addToCart,
     doesExistInCart,
     removeItemFromCart,
-    setProductQty
+    setProductQty,
+    storeCart
 } from './cart';
 
 export {
@@ -40,3 +41,8 @@ export {
     addAddress,
     deleteAddress
 } from './addresses';
+
+export {
+    getOrders,
+    placeOrder
+} from './orders';

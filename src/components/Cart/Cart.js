@@ -33,15 +33,17 @@ class Cart extends Component {
         })
 
         let cartHeading = <span className={classes.heading}>Cart</span>
-        if(this.props.cart.length === 0) {
+        if (this.props.cart.length === 0) {
             cartHeading = <span className={classes.heading}>Cart is empty</span>
         }
 
         return (
             <div className={classes.container}>
                 <Summary />
-                {cartHeading}
-                {cart}
+                <div className={classes.content}>
+                    {cartHeading}
+                    {cart}
+                </div>
             </div>
         )
     }
