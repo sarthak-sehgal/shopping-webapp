@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/balajistores-webapp/static/js/runtime~main.01a37302.js"
   },
   {
-    "revision": "242e2571150beb278cc5",
-    "url": "/balajistores-webapp/static/js/main.242e2571.chunk.js"
+    "revision": "a37252bac57876924d64",
+    "url": "/balajistores-webapp/static/js/main.a37252ba.chunk.js"
   },
   {
     "revision": "abb0c3c6a91d01d00851",
     "url": "/balajistores-webapp/static/js/1.abb0c3c6.chunk.js"
   },
   {
-    "revision": "242e2571150beb278cc5",
-    "url": "/balajistores-webapp/static/css/main.a30832fc.chunk.css"
+    "revision": "a37252bac57876924d64",
+    "url": "/balajistores-webapp/static/css/main.fba002b6.chunk.css"
   },
   {
-    "revision": "652a53b8b2655414c0272550f2a2820b",
+    "revision": "29b1a7d185b76c9345bbff3f8c6d4c39",
     "url": "/balajistores-webapp/index.html"
   }
 ];

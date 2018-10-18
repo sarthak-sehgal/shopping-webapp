@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/balajistores-webapp/precache-manifest.f9462fac42bdf2e9f3d465f2011074a0.js"
+  "/balajistores-webapp/precache-manifest.6c5fc3e87802801b9010bea1fe73dd1d.js"
 );
 
 workbox.clientsClaim();
