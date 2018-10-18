@@ -5,18 +5,21 @@ import {STORE_ADDRESSES, STORE_NEW_ADDRESS, DELETE_ADDRESS_FROM_STORE} from './a
 export const getAddresses = () => {
     return (dispatch, getState) => {
         dispatch(uiStartLoading());
-        let uid = getState().auth.user.uid;
-        db.ref('/users/' + uid + '/uaddresses/').once('value')
-            .then((snap) => {
-                dispatch(uiStopLoading());
-                var snapData = snap.val();
-                dispatch(storeAddresses(snapData));
-            })
-            .catch(err => {
-                dispatch(uiStopLoading());
-                dispatch(storeAddresses([]));
-                console.log(err);
-            });
+        let user = getState().auth.user;
+        if(user) {
+            let uid = user.uid;
+            db.ref('/users/' + uid + '/uaddresses/').once('value')
+                .then((snap) => {
+                    dispatch(uiStopLoading());
+                    var snapData = snap.val();
+                    dispatch(storeAddresses(snapData));
+                })
+                .catch(err => {
+                    dispatch(uiStopLoading());
+                    dispatch(storeAddresses([]));
+                    console.log(err);
+                });
+        }
     }
 }
 

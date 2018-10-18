@@ -69,7 +69,7 @@ class Addresses extends Component {
         if (!this.state.loading && !this.state.user) {
             return <Redirect
                 to={{
-                    pathname: BASE_URL + "/",
+                    pathname: BASE_URL + "/auth",
                 }}
             />
         }

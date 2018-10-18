@@ -86,7 +86,7 @@ class AddProduct extends Component {
         if (!this.state.isAdmin) {
             return <Redirect
                 to={{
-                    pathname: BASE_URL + "/",
+                    pathname: BASE_URL + "/auth",
                 }}
             />
         }
