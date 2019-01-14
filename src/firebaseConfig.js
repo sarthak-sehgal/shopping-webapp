@@ -4,12 +4,12 @@ import 'firebase/auth';
 import 'firebase/storage';
 
 var config = {
-    apiKey: "AIzaSyDJ8qp2D8mupTsTS6zmpGXUeN9BDxMtYdQ",
-    authDomain: "balaji-store.firebaseapp.com",
-    databaseURL: "https://balaji-store.firebaseio.com",
-    projectId: "balaji-store",
-    storageBucket: "balaji-store.appspot.com",
-    messagingSenderId: "388232322676"
+    apiKey: "your_api_key",
+    authDomain: "your_firebase_domain",
+    databaseURL: "your_firebase_db_url",
+    projectId: "your_firebase_project_id",
+    storageBucket: "your_firebase_storage_url",
+    messagingSenderId: "your_firebase_messaging_sender_id"
 };
 
 firebase.initializeApp(config);

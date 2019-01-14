@@ -22,7 +22,7 @@ class NavBar extends Component {
             )
         }
         return (
-            <Navbar brand='Balaji Stores' href={BASE_URL + '/'} right>
+            <Navbar brand='Shopping App' href={BASE_URL + '/'} right>
                 <NavItem href={BASE_URL + '/'}>Home</NavItem>
                 <NavItem href={BASE_URL + '/cart'}>Cart</NavItem>
                 {authStatus}
